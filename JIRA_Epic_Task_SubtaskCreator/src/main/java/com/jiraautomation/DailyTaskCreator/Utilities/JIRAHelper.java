@@ -20,9 +20,9 @@ import com.atlassian.jira.rest.client.internal.async.AsynchronousJiraRestClientF
  */
 public class JIRAHelper {
 
-	private static final String JIRA_URL = "https://psaljira.pershing.com.au";
-	private static final String JIRA_ADMIN_USERNAME = "serviceaccount02"; // "";
-	private static final String JIRA_ADMIN_PASSWORD = "W3!come_03";
+	private static final String JIRA_URL = "url";
+	private static final String JIRA_ADMIN_USERNAME = "username"; // "";
+	private static final String JIRA_ADMIN_PASSWORD = "password";
 
 	public JiraRestClient GetJIRAclient() {
 		JiraRestClient client = null;
