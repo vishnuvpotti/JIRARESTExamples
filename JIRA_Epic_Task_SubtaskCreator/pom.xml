@@ -4,20 +4,13 @@
    <groupId>com.jira.automation</groupId>
    <artifactId>dailytasklistcreation</artifactId>
    <version>1.0</version>
-   <packaging>jar</packaging>
-   <name>dailytasklistcreation</name>
-   <url>http://maven.apache.org</url>
-   <properties>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   </properties>
    <dependencies>
-<!-- https://mvnrepository.com/artifact/junit/junit -->
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-</dependency>
-
+      <!-- https://mvnrepository.com/artifact/junit/junit -->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.12</version>
+      </dependency>
       <dependency>
          <groupId>com.microsoft.sqlserver</groupId>
          <artifactId>mssql-jdbc</artifactId>
@@ -30,19 +23,18 @@
             </exclusion>
          </exclusions>
       </dependency>
-<!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-api -->
-<dependency>
-    <groupId>com.atlassian.jira</groupId>
-    <artifactId>jira-rest-java-client-api</artifactId>
-    <version>4.0.0</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-core -->
-<dependency>
-    <groupId>com.atlassian.jira</groupId>
-    <artifactId>jira-rest-java-client-core</artifactId>
-    <version>4.0.0</version>
-</dependency>
+      <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-api -->
+      <dependency>
+         <groupId>com.atlassian.jira</groupId>
+         <artifactId>jira-rest-java-client-api</artifactId>
+         <version>4.0.0</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-core -->
+      <dependency>
+         <groupId>com.atlassian.jira</groupId>
+         <artifactId>jira-rest-java-client-core</artifactId>
+         <version>4.0.0</version>
+      </dependency>
       <dependency>
          <groupId>com.google.guava</groupId>
          <artifactId>guava</artifactId>
@@ -108,6 +100,7 @@
       </pluginRepository>
    </pluginRepositories>
    <build>
+      <finalName>dailytasklistcreation</finalName>
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -116,6 +109,37 @@
             <configuration>
                <source>1.8</source>
                <target>1.8</target>
+            </configuration>
+         </plugin>
+         <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+               <archive>
+                  <manifest>
+                     <mainClass>com.jiraautomation.DailyTaskCreator.Engine.ProcessDailyTaskCreation</mainClass>
+                  </manifest>
+               </archive>
+               <descriptorRefs>
+                  <descriptorRef>jar-with-dependencies</descriptorRef>
+               </descriptorRefs>
+               <finalName>dailytasklistcreation</finalName>
+               <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+            <executions>
+               <execution>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>single</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.12.4</version>
+            <configuration>
+               <skipTests>true</skipTests>
             </configuration>
          </plugin>
       </plugins>
