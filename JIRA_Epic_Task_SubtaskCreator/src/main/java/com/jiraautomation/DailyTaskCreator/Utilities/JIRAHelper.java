@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 
-import org.junit.Test;
-
 import com.atlassian.jira.rest.client.api.JiraRestClient;
 import com.atlassian.jira.rest.client.api.JiraRestClientFactory;
 import com.atlassian.jira.rest.client.api.RestClientException;
