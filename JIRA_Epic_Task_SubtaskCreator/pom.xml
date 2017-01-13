@@ -3,15 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.pershing.automation</groupId>
-  <artifactId>dailytasklistcreation</artifactId>
+  <artifactId>DailyTaskCreator</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
-
-  <name>dailytasklistcreation</name>
+  <name>DailyTaskCreator</name>
   <url>http://maven.apache.org</url>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <jdk.version>1.8</jdk.version>
+      <skipTests>true</skipTests>
   </properties>
 
   <dependencies>
@@ -112,4 +112,42 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+    <build>
+      <finalName>${project.artifactId}</finalName>
+      <plugins>
+         <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+               <execution>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>single</goal>
+                  </goals>
+               </execution>
+            </executions>
+            <configuration>
+               <archive>
+                  <manifest>
+                     <addClasspath>true</addClasspath>
+                     <mainClass>com.pershing.automation.DailyTaskCreator.Engine.ProcessDailyTaskCreation</mainClass>
+                  </manifest>
+               </archive>
+               <descriptorRefs>
+                  <descriptorRef>jar-with-dependencies</descriptorRef>
+               </descriptorRefs>
+               <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+         </plugin>
+         <!-- Set a JDK compiler level -->
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+               <fork>true</fork>
+               <source>${jdk.version}</source>
+               <target>${jdk.version}</target>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
 </project>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DailyTaskList>
+   <Project name="Operations">
+      <!--Give project name as in JIRA -->
+      <Projectkey>OST</Projectkey>
+      <!--Give project key as in JIRA -->
+      <Epic epicname="OP TEAM - Tasks">
+         <Parameter field="Summary" fieldtype="simple">
+            <Value>%date:dd/MM/yy% - OP Daily Tasks</Value>
+         </Parameter>
+         <Parameter field="customfield_10006" fieldtype="simple">
+            <Value>%date:dd/MMM/yy% - OP Daily Tasks</Value>
+         </Parameter>
+         <Parameter field="businessTeam" fieldtype="complex">
+            <Value>OP</Value>
+         </Parameter>
+         <Parameter field="datereported">
+            <Value>%date:yyyy-MM-dd%</Value>
+         </Parameter>
+         <TaskList>
+            <Task taskname="Supervisory Functions">
+               <Parameter field="Summary" fieldtype="simple">
+                  <Value>%date:dd/MM/yy% - Supervisory Functions</Value>
+               </Parameter>
+               <Parameter field="DeOPtion">
+                  <Value>Bla Bla</Value>
+               </Parameter>
+               <Parameter field="datereported">
+                  <Value>%date:yyyy-MM-dd%</Value>
+               </Parameter>
+               <Parameter field="businessTeam" fieldtype="complex">
+                  <Value>OP</Value>
+               </Parameter>
+               <Parameter field="customfield_14200" fieldtype="simple">
+                  <Value>1</Value>
+               </Parameter>
+               <Subtask subtaskname="Did the bla bla">
+                  <Parameter field="Summary">
+                     <Value>Did the bla bla</Value>
+                  </Parameter>
+                  <Parameter field="DeOPtion">
+                     <Value>Did the bla bla</Value>
+                  </Parameter>
+                  <Parameter field="datereported">
+                     <Value>%date:yyyy-MM-dd%</Value>
+                  </Parameter>
+                  <Parameter field="businessTeam" fieldtype="complex">
+                     <Value>OP</Value>
+                  </Parameter>
+                  <Parameter field="assignee" fieldtype="simple">
+                     <Value>someassignee</Value>
+                  </Parameter>
+               </Subtask>
+            </Task>
+            <Task taskname="Exceptions">
+               <Parameter field="Summary">
+                  <Value>%date:dd/MM/yy% -Exceptions</Value>
+               </Parameter>
+               <Parameter field="DeOPtion">
+                  <Value>Few exceptions from clients</Value>
+               </Parameter>
+               <Parameter field="datereported">
+                  <Value>%date:yyyy-MM-dd%</Value>
+               </Parameter>
+               <Parameter field="businessTeam" fieldtype="complex">
+                  <Value>Exceptions</Value>
+               </Parameter>
+               <Parameter field="customfield_9999" fieldtype="simple">
+                  <Value>2</Value>
+               </Parameter>
+               <Subtask subtaskname="No exceptions uncovered">
+                  <Parameter field="Summary">
+                     <Value>No exceptions uncovered</Value>
+                  </Parameter>
+                  <Parameter field="DeOPtion">
+                     <Value>No exceptions uncovered</Value>
+                  </Parameter>
+                  <Parameter field="datereported" fieldtype="complex">
+                     <Value>%date:yyyy-MM-dd%</Value>
+                  </Parameter>
+                  <Parameter field="businessTeam" fieldtype="complex">
+                     <Value>OP</Value>
+                  </Parameter>
+                  <Parameter field="assignee" fieldtype="simple">
+                     <Value>servicedesk01</Value>
+                  </Parameter>
+               </Subtask>
+            </Task>
+         </TaskList>
+      </Epic>
+      <Epic>
+         <Task taskname="bla">
+            <Parameter field="Summary" fieldtype="simple">
+               <Value>%date:dd/MM/yy% - bla Functions</Value>
+            </Parameter>
+            <Parameter field="DeOPtion">
+               <Value>Bla Bla</Value>
+            </Parameter>
+            <Parameter field="datereported">
+               <Value>%date:yyyy-MM-dd%</Value>
+            </Parameter>
+            <Parameter field="EPIC LINK" fieldtype="simple">
+               <Value>EXC-766</Value>
+            </Parameter>
+            <Subtask subtaskname="Did the bla bla">
+               <Parameter field="Summary">
+                  <Value>Did the bla bla</Value>
+               </Parameter>
+               <Parameter field="assignee" fieldtype="simple">
+                  <Value>blateam01</Value>
+               </Parameter>
+            </Subtask>
+         </Task>
+      </Epic>
+   </Project>
+</DailyTaskList>
