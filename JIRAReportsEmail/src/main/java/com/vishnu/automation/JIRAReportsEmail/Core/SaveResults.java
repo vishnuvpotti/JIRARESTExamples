@@ -26,17 +26,36 @@ public class SaveResults {
 		this.fileType = filetype;
 	}
 
+	/**
+	 * Function to save the file in desired format
+	 * 
+	 * @param headerList
+	 *            : Send the headerlist as String separated by comas.
+	 * @param recordsList
+	 *            : Send the list of Issuedata objects.
+	 * @param fileName
+	 *            : Send the filename for saving file.
+	 */
 	public void SaveFile(String headerList, List<IssueData> recordsList, String fileName) {
+
 		switch (fileType) {
 		case "xls":
 		case "xlsx":
+			Logger.WriteLog("Create xlsx for saving results.");
 			WriteToExcelFile(headerList, recordsList, fileName);
 			break;
 		case "doc":
 			System.out.println("Not yet implemented");
+			Logger.WriteLog("Outputting to doc format not yet implemented");
+			break;
+		case "inline":
+			System.out.println("Create HTML for saving results into variable");
+			Logger.WriteLog("Create HTML for sending results into variable");
+			EmailTasks.htmlData = SaveResultsAsHTML(headerList, recordsList, fileName);
 			break;
 		default:
 			System.out.println("Invalid format");
+			Logger.WriteLog("Invalid format");
 			break;
 		}
 	}
@@ -53,7 +72,7 @@ public class SaveResults {
 
 		for (IssueData issue : recordsList) {
 			row = sheet.createRow(++rowCount);
-			System.out.println("Enter data on row" + row.getRowNum() + " for key " + issue.getDataList().get(0).get("Key"));
+			//System.out.println("Enter data on row" + row.getRowNum() + " for key " + issue.getDataList().get(0).get("Key"));
 			WriteRowsToExcel(row, issue);
 		}
 
@@ -106,10 +125,62 @@ public class SaveResults {
 			Cell cell = null;
 			for (Map.Entry<String, String> e : issuedatamap.entrySet()) {
 				cell = row.createCell(++i);
-				Logger.WriteLog("Writing Key: " + e.getKey() +"; Value: " + e.getValue() + " on cell number :" + i);
+				Logger.WriteLog("Writing Key: " + e.getKey() + "; Value: " + e.getValue() + " on cell number :" + i);
 				cell.setCellValue(e.getValue());
 
 			}
 		}
 	}
+
+	private String SaveResultsAsHTML(String headerList, List<IssueData> recordsList, String reportName) {
+		StringBuilder htmlSB = new StringBuilder();
+		htmlSB.append("<html><head>Report from JIRA</head><title>Report from JIRA</title><body><table border=4><caption><h2>" + reportName
+				+ "</h2><h4> Total Issues - " + recordsList.size() + "</h4></caption>");
+		htmlSB.append(CreateHTMLHeader(headerList));
+		for (IssueData issueData : recordsList) {
+			htmlSB.append(WriteDataAsHTML(issueData));
+		}
+		htmlSB.append("</table></body></html>");
+
+		// Logger.WriteLog("******************HTML *******************");
+		// Logger.WriteLog(htmlSB.toString());
+		// Logger.WriteLog("******************HTML *******************");
+		return htmlSB.toString();
+	}
+
+	private String CreateHTMLHeader(String headers) {
+		StringBuilder headerSB = new StringBuilder();
+		try {
+			String[] headersArray = headers.split(",");
+			headerSB.append("<tr>");
+			for (String header : headersArray) {
+				headerSB.append("<th>" + header + "</th>");
+			}
+			headerSB.append("</tr>");
+			//System.out.println("header is:" + headerSB.toString());
+		} catch (Exception e) {
+		}
+		return headerSB.toString();
+	}
+
+	private String WriteDataAsHTML(IssueData issue) {
+		// System.out.println("WriteDataasHTML for :" + issue.getDataList().get(0).get("Key"));
+
+		StringBuilder htmlDataSB = new StringBuilder();
+		try {
+			int i = 1;
+			htmlDataSB.append("<tr>");
+			for (Map<String, String> issuedatamap : issue.getDataList()) {
+				for (Map.Entry<String, String> e : issuedatamap.entrySet()) {
+					Logger.WriteLog("Writing Key: " + e.getKey() + "; Value: " + e.getValue() + " on cell number :" + i);
+					htmlDataSB.append("<td>" + e.getValue() + "</td>");
+					i++;
+				}
+			}
+			htmlDataSB.append("</tr>");
+		} catch (Exception e) {
+		}
+		return htmlDataSB.toString();
+	}
+
 }

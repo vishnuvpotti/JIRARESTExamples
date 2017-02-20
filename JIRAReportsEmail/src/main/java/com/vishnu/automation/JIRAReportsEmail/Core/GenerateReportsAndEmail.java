@@ -40,6 +40,7 @@ public class GenerateReportsAndEmail {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			Logger.WriteLog("Exception while parsing xml. Please check detailed exception info." + e.getMessage());
+			System.out.println("Exception while parsing xml. Please check detailed exception info." + e.getMessage());
 			Logger.WriteLog("Exception stacktrace:" + e.getStackTrace());
 		}
 
@@ -48,6 +49,7 @@ public class GenerateReportsAndEmail {
 			Logger.WriteLog("Get total Reports Count:" + emailReports.getReports().size());
 
 			for (Report reports : emailReports.getReports()) {
+				EmailTasks.htmlData="";
 				Logger.WriteLog("Start Processing Report :" + reports.getReportName());
 				System.out.println("Start Processing Report : " + reports.getReportName());
 				System.out.println("JIRA JQL for Report  is: " + reports.getJiraObject().getJql());
@@ -83,3 +85,4 @@ public class GenerateReportsAndEmail {
 
 	
 }
+

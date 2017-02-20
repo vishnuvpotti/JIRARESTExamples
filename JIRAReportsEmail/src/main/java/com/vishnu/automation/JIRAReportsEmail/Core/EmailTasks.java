@@ -32,24 +32,23 @@ public class EmailTasks {
 
 		// Prepare Email
 		String fromAddress = emailObjectData.getFromEmailAddress() == null ? "no-reply@vishnu.com" : emailObjectData.getFromEmailAddress();
-		String emailBodyMessage = emailObjectData.getEmailBodyMessage();
+		String emailBodyMessage = emailObjectData.getEmailBodyMessage().replace("%resultData%", EmailTasks.htmlData);
 		String attachmentName = emailObjectData.getAttachmentName();
 		String[] toAddressArray = emailObjectData.getEmailAddresses().split(",");
 		String[] bccAddressArray = emailObjectData.getBcc().split(",");
 		final String dir = System.getProperty("user.dir");
-		Logger.WriteLog("Current dirictory is = " + dir);
+		//Logger.WriteLog("Current dirictory is = " + dir);
 		Path path = Paths.get(dir, attachmentName);
-		System.out.println("File path for attachment = " + path.toString());
-		Logger.WriteLog("File path for attachment = " + path.toString());
-		
+
+
 		try {
 			// Create a default MimeMessage object.
 			MimeMessage message = new MimeMessage(GetSession());
 			message.setFrom(new InternetAddress(fromAddress));
 			message.setSubject(emailObjectData.getSubject());
-			
+
 			for (String bcc : bccAddressArray) {
-			message.addRecipient(Message.RecipientType.BCC,new InternetAddress(bcc));
+				message.addRecipient(Message.RecipientType.BCC, new InternetAddress(bcc));
 			}
 
 			// Set To: header field of the header.
@@ -62,10 +61,10 @@ public class EmailTasks {
 			// messageBodyPart.setText(emailBodyMessage);
 			String msgType = emailObjectData.getMessageType() == null ? "text/plain"
 					: (emailObjectData.getMessageType().equalsIgnoreCase("html") ? "text/html" : "text/plain");
-			
+
 			if (emailObjectData.getMessageType().equalsIgnoreCase("html")) {
 				emailBodyMessage = emailBodyMessage.replaceAll("\n", "<br />");
-			//	System.out.println("after Body msg:" + emailBodyMessage);
+				// System.out.println("after Body msg:" + emailBodyMessage);
 				messageBodyPart.setContent(emailBodyMessage, msgType);
 			}
 			// Create a multipart message
@@ -74,6 +73,8 @@ public class EmailTasks {
 			multipart.addBodyPart(messageBodyPart);
 			// Part two is attachment
 			if (emailObjectData.getAttachmentsNeeded()) {
+				System.out.println("File path for attachment = " + path.toString());
+				Logger.WriteLog("File path for attachment = " + path.toString());
 				multipart.addBodyPart(PrepareAttachment(path.toString(), emailObjectData.getAttachmentName()));
 			}
 			// Send message
@@ -87,10 +88,22 @@ public class EmailTasks {
 		}
 	}
 
+	/**
+	 * Function to convert HTML to text format.
+	 * 
+	 * @param html
+	 *            : Send the html string.
+	 * @return : Plain text as string
+	 */
 	private String ConvertHTMLToText(String html) {
 		return Jsoup.parse(html).text();
 	}
 
+	/**
+	 * Function to get Session object for sending email
+	 * 
+	 * @return : Return Session object
+	 */
 	private Session GetSession() {
 		Properties properties = System.getProperties();
 		// Setup mail server
@@ -102,6 +115,15 @@ public class EmailTasks {
 		return session;
 	}
 
+	/**
+	 * Function to create attachment to the email.
+	 * 
+	 * @param file
+	 *            : Send the complete file path with extension
+	 * @param filename
+	 *            : Send the display name of the attachment in the email .
+	 * @return
+	 */
 	private BodyPart PrepareAttachment(String file, String filename) {
 		Logger.WriteLog("Include attachments on the email");
 		BodyPart messageAttachmentPart = new MimeBodyPart();
