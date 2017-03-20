@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.vishnu.automation</groupId>
-   <artifactId>jirareports</artifactId>
+   <artifactId>jirataskexecutor</artifactId>
    <version>1.0</version>
    <packaging>jar</packaging>
-   <name>jirareports</name>
+   <name>jirataskexecutor</name>
    <url>http://maven.apache.org</url>
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -129,7 +129,7 @@
                <archive>
                   <manifest>
                      <addClasspath>true</addClasspath>
-                     <mainClass>com.vishnu.automation.ReportsFromJIRA.Engine.ProcessReports</mainClass>
+                     <mainClass>com.vishnu.automation.ExecuteTasksOnJIRA.Engine.ProcessTasks</mainClass>
                   </manifest>
                </archive>
                <descriptorRefs>

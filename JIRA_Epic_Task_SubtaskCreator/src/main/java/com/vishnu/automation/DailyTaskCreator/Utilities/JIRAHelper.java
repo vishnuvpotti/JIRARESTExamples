@@ -60,7 +60,6 @@ public class JIRAHelper {
 	}
 
 	public Boolean VerifyIfRecordExistInJIRA(String key) {
-		// String key = "CTP-14345";
 		Boolean returnValue = true;
 		Issue issueNum = null;
 		JiraRestClient client = new JIRAHelper().GetJIRAclient();

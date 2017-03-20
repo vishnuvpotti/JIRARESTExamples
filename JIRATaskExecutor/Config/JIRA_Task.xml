@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JIRATaskList>
+   <Task taskname="Linking Epic">
+      <!--Give project name as in JIRA -->
+      <JQL>project = odt and Issuetype = "ODT - Exceptions" and "Date Reported" >= startOfDay()</JQL>
+      <Action>
+         <!-- <Type>link-relatedto</Type> -->
+         <Parameter field="Epic Link" fieldlookup="true" lookupfieldname="summary" fieldtype="simple">
+            <Value>%date:dd/MM/yy% - Daily Operations Manager Report</Value>
+         </Parameter>
+      </Action>
+   </Task>
+</JIRATaskList>

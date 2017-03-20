@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailReports>
+   <Report reportname="OutstandingTasks Report">
+      <!--Give project name as in JIRA -->
+      <JIRA>
+         <JQL>project = blabla order by "Date Reported" desc</JQL>
+         <Fields>Key,Issue Type,Summary,Assignee,Date Reported,Status</Fields>
+         <FileType>inline</FileType>
+         <Filename>OutstandingTasks</Filename>
+      </JIRA>
+      <Email>
+         <FromEmailAddress>jira-reports@gmail.com</FromEmailAddress>
+		 <BCC></BCC>
+         <Subject>Outstanding Daily Tasks</Subject>
+         <!-- Email body message should be in Java format. eg - For new line provide \n and for tab provide \t -->
+         <EmailBodyMessage>Hi,
+		 
+		  customEmailMesageHere
+		  
+		  Thanks,
+                         JIRA Team.
+		  
+		  </EmailBodyMessage>
+         <EmailAddresses></EmailAddresses>
+         <MessageType>HTML</MessageType>
+         <Attachments>No</Attachments>
+         <AttachmentName>Tasks.xlsx</AttachmentName>
+      </Email>
+   </Report>
+</EmailReports>

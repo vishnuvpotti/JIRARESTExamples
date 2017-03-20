@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.pershing.automation</groupId>
-  <artifactId>DailyTaskCreator</artifactId>
+  <groupId>com.vishnu.automation</groupId>
+  <artifactId>dailytaskcreator</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
   <name>DailyTaskCreator</name>
@@ -16,12 +15,12 @@
   </properties>
 
   <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
-            <scope>test</scope>
-        </dependency>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.8.2</version>
+         <scope>test</scope>
+      </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-json</artifactId>
@@ -67,11 +66,18 @@
             <artifactId>json</artifactId>
             <version>20160810</version>
         </dependency>
-         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>4.2</version>
-         </dependency>
+      <dependency>
+         <groupId>com.microsoft.sqlserver</groupId>
+         <artifactId>mssql-jdbc</artifactId>
+         <version>6.1.0.jre8</version>
+         <scope>compile</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>com.microsoft.azure</groupId>
+               <artifactId>azure-keyvault</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
         <dependency>
     	<groupId>org.apache.commons</groupId>
    		 <artifactId>commons-lang3</artifactId>
@@ -130,134 +136,12 @@
                <archive>
                   <manifest>
                      <addClasspath>true</addClasspath>
-                     <mainClass>com.pershing.automation.DailyTaskCreator.Engine.ProcessDailyTaskCreation</mainClass>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <groupId>com.jira.automation</groupId>
-   <artifactId>dailytasklistcreation</artifactId>
-   <version>1.0</version>
-   <dependencies>
-      <!-- https://mvnrepository.com/artifact/junit/junit -->
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>4.12</version>
-      </dependency>
-      <dependency>
-         <groupId>com.microsoft.sqlserver</groupId>
-         <artifactId>mssql-jdbc</artifactId>
-         <version>6.1.0.jre8</version>
-         <scope>compile</scope>
-         <exclusions>
-            <exclusion>
-               <groupId>com.microsoft.azure</groupId>
-               <artifactId>azure-keyvault</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-api -->
-      <dependency>
-         <groupId>com.atlassian.jira</groupId>
-         <artifactId>jira-rest-java-client-api</artifactId>
-         <version>4.0.0</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-core -->
-      <dependency>
-         <groupId>com.atlassian.jira</groupId>
-         <artifactId>jira-rest-java-client-core</artifactId>
-         <version>4.0.0</version>
-      </dependency>
-      <dependency>
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>14.0-rc1</version>
-      </dependency>
-      <dependency>
-         <groupId>org.codehaus.jettison</groupId>
-         <artifactId>jettison</artifactId>
-         <version>1.0.1</version>
-      </dependency>
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-simple</artifactId>
-         <version>1.7.21</version>
-      </dependency>
-      <dependency>
-         <groupId>commons-io</groupId>
-         <artifactId>commons-io</artifactId>
-         <version>2.4</version>
-      </dependency>
-      <dependency>
-         <groupId>org.json</groupId>
-         <artifactId>json</artifactId>
-         <version>20160810</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.commons</groupId>
-         <artifactId>commons-lang3</artifactId>
-         <version>3.5</version>
-      </dependency>
-      <dependency>
-         <groupId>javax.xml.bind</groupId>
-         <artifactId>jaxb-api</artifactId>
-         <version>2.2.12</version>
-      </dependency>
-   </dependencies>
-   <repositories>
-      <repository>
-         <id>atlassian-public</id>
-         <url>https://m2proxy.atlassian.com/repository/public</url>
-         <snapshots>
-            <enabled>true</enabled>
-            <updatePolicy>daily</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-         </snapshots>
-         <releases>
-            <enabled>true</enabled>
-            <checksumPolicy>warn</checksumPolicy>
-         </releases>
-      </repository>
-   </repositories>
-   <pluginRepositories>
-      <pluginRepository>
-         <id>atlassian-public</id>
-         <url>https://m2proxy.atlassian.com/repository/public</url>
-         <releases>
-            <enabled>true</enabled>
-            <checksumPolicy>warn</checksumPolicy>
-         </releases>
-         <snapshots>
-            <checksumPolicy>warn</checksumPolicy>
-         </snapshots>
-      </pluginRepository>
-   </pluginRepositories>
-   <build>
-      <finalName>dailytasklistcreation</finalName>
-      <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.6.0</version>
-            <configuration>
-               <source>1.8</source>
-               <target>1.8</target>
-            </configuration>
-         </plugin>
-         <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <configuration>
-               <archive>
-                  <manifest>
-                     <mainClass>com.jiraautomation.DailyTaskCreator.Engine.ProcessDailyTaskCreation</mainClass>
->>>>>>> origin/master
+                     <mainClass>com.vishnu.automation.DailyTaskCreator.Engine.ProcessDailyTaskCreation</mainClass>
                   </manifest>
                </archive>
                <descriptorRefs>
                   <descriptorRef>jar-with-dependencies</descriptorRef>
                </descriptorRefs>
-<<<<<<< HEAD
                <appendAssemblyId>false</appendAssemblyId>
             </configuration>
          </plugin>
@@ -269,32 +153,8 @@
                <fork>true</fork>
                <source>${jdk.version}</source>
                <target>${jdk.version}</target>
-=======
-               <finalName>dailytasklistcreation</finalName>
-               <appendAssemblyId>false</appendAssemblyId>
-            </configuration>
-            <executions>
-               <execution>
-                  <phase>package</phase>
-                  <goals>
-                     <goal>single</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.12.4</version>
-            <configuration>
-               <skipTests>true</skipTests>
->>>>>>> origin/master
             </configuration>
          </plugin>
       </plugins>
    </build>
-<<<<<<< HEAD
 </project>
-=======
-</project>
->>>>>>> origin/master
